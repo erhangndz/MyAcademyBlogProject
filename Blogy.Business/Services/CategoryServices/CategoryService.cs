@@ -40,6 +40,12 @@ namespace Blogy.Business.Services.CategoryServices
             return _mapper.Map<UpdateCategoryDto>(category);
         }
 
+        public async Task<List<ResultCategoryDto>> GetCategoriesWithBlogsAsync()
+        {
+            var categories = await _categoryRepository.GetCategoriesWithBlogsAsync();
+            return _mapper.Map<List<ResultCategoryDto>>(categories);
+        }
+
         public async Task UpdateAsync(UpdateCategoryDto categoryDto)
         {
             var category = _mapper.Map<Category>(categoryDto);

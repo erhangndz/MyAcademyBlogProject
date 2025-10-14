@@ -1,6 +1,7 @@
 ﻿using Blogy.DataAccess.Context;
 using Blogy.DataAccess.Repositories.GenericRepositories;
 using Blogy.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blogy.DataAccess.Repositories.CategoryRepositories
 {
@@ -10,6 +11,9 @@ namespace Blogy.DataAccess.Repositories.CategoryRepositories
         {
         }
 
-     
+        public async Task<List<Category>> GetCategoriesWithBlogsAsync()
+        {
+           return await _context.Categories.AsNoTracking().Include(x=>x.Blogs).ToListAsync();
+        }
     }
 }
