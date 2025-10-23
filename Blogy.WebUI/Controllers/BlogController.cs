@@ -6,6 +6,7 @@ namespace Blogy.WebUI.Controllers
 {
     public class BlogController(IBlogService _blogService,ICategoryService _categoryService) : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
