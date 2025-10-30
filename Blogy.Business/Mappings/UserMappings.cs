@@ -10,6 +10,7 @@ namespace Blogy.Business.Mappings
         {
             CreateMap<AppUser, ResultUserDto>()
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => string.Join(" ", src.FirstName, src.LastName)));
+                
         }
     }
 }
