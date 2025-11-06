@@ -31,7 +31,7 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var blogs = await _blogService.GetBlogsWithCategoriesAsync();
+            var blogs = await _blogService.GetAllAsync();
             return View(blogs);
         }
 
@@ -77,6 +77,8 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
                 await GetCategoriesAsync();
                 return View(updateBlogDto);
             }
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            updateBlogDto.WriterId = user.Id;
 
             await _blogService.UpdateAsync(updateBlogDto);
             return RedirectToAction("Index");

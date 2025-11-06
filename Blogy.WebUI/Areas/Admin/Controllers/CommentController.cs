@@ -19,7 +19,7 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
         private async Task GetBlogs()
         {
             var blogs = await _blogService.GetAllAsync();
-            ViewBag.blogs = (from blog in blogs
+            TempData["blogs"] = (from blog in blogs
                               select new SelectListItem
                               {
                                   Text= blog.Title,
